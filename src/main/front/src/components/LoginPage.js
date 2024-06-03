@@ -13,7 +13,7 @@ const LoginPage = () => {
             }}>
                 <div className="조합6" style={{
                     width: 340,
-                    height: 713,
+                    height: 760,
                     left: 0,
                     top: 341,
                     position: 'absolute',
@@ -23,15 +23,15 @@ const LoginPage = () => {
                     justifyContent: 'flex-end',
                 }}>
                     <div className="왼쪽카테고리" style={{
-                        width: 325,
-                        height: 419,
+                        width: 330,
+                        height: 420,
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'center',
                         justifyContent: 'flex-end',
                     }}>
                         <div className="Frame10" style={{
-                            width: 325,
+                            width: 330,
                             height: 52,
                             paddingRight: 9,
                             borderColor: 'black',
@@ -43,7 +43,7 @@ const LoginPage = () => {
                             justifyContent: 'flex-start',
                         }}>
                             <p className="식품" style={{
-                                width: 316,
+                                width: 330,
                                 height: 52,
                                 fontSize: 32,
                                 lineHeight: '100%',
@@ -52,7 +52,7 @@ const LoginPage = () => {
                         </div>
                         <div style={{height: 0.43,}}/>
                         <div className="Frame9" style={{
-                            width: 325,
+                            width: 330,
                             height: 52,
                             paddingRight: 7,
                             borderColor: 'black',
@@ -64,7 +64,7 @@ const LoginPage = () => {
                             justifyContent: 'center',
                         }}>
                             <p className="패션" style={{
-                                width: 318,
+                                width: 330,
                                 height: 52,
                                 fontSize: 32,
                                 lineHeight: '100%',
@@ -73,7 +73,7 @@ const LoginPage = () => {
                         </div>
                         <div style={{height: 0.43,}}/>
                         <div className="Frame8" style={{
-                            width: 325,
+                            width: 330,
                             height: 52,
                             paddingRight: 11,
                             borderColor: 'black',
@@ -85,7 +85,7 @@ const LoginPage = () => {
                             justifyContent: 'flex-start',
                         }}>
                             <p className="뷰티" style={{
-                                width: 314,
+                                width: 330,
                                 height: 52,
                                 fontSize: 32,
                                 lineHeight: '100%',
@@ -94,7 +94,7 @@ const LoginPage = () => {
                         </div>
                         <div style={{height: 0.43,}}/>
                         <div className="Frame7" style={{
-                            width: 325,
+                            width: 330,
                             height: 52,
                             borderColor: 'black',
                             borderWidth: 1,
@@ -105,7 +105,7 @@ const LoginPage = () => {
                             justifyContent: 'center',
                         }}>
                             <p className="스포츠" style={{
-                                width: 328,
+                                width: 330,
                                 height: 52,
                                 fontSize: 32,
                                 lineHeight: '100%',
@@ -114,7 +114,7 @@ const LoginPage = () => {
                         </div>
                         <div style={{height: 0.43,}}/>
                         <div className="Frame6" style={{
-                            width: 325,
+                            width: 330,
                             height: 52,
                             borderColor: 'black',
                             borderWidth: 1,
@@ -125,7 +125,7 @@ const LoginPage = () => {
                             justifyContent: 'center',
                         }}>
                             <p className="가구/인테리어" style={{
-                                width: 328,
+                                width: 330,
                                 height: 52,
                                 fontSize: 32,
                                 lineHeight: '100%',
@@ -134,7 +134,7 @@ const LoginPage = () => {
                         </div>
                         <div style={{height: 0.43,}}/>
                         <div className="Frame4" style={{
-                            width: 325,
+                            width: 330,
                             height: 52,
                             borderColor: 'black',
                             borderWidth: 1,

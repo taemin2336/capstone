@@ -1,5 +1,12 @@
 {
+  "name": "capstone",
+  "version": "0.1.0",
+  "scripts": {
+    "cilent": "cd main/front && react-scripts start",
+    "server": "nodemon server.js"
+  },
   "dependencies": {
+    "body-parser": "^1.20.2",
     "express": "^4.19.2",
     "mysql": "^2.18.1"
   }
