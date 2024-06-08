@@ -3,10 +3,12 @@
   "version": "0.1.0",
   "scripts": {
     "cilent": "cd main/front && react-scripts start",
-    "server": "nodemon server.js"
+    "server": "nodemon src/main/front/src/server/server.js"
   },
   "dependencies": {
+    "@previewjs/cli": "^1.28.1",
     "body-parser": "^1.20.2",
+    "concurrently": "^8.2.2",
     "express": "^4.19.2",
     "mysql": "^2.18.1"
   }
