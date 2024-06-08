@@ -15,8 +15,7 @@ const RegisterPage = () => {
         });
     };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
+    const handleRegister = () => {
         fetch("http://localhost:5000/register", {
             method: "POST",
             headers: {
@@ -32,10 +31,18 @@ const RegisterPage = () => {
             })
             .then((json) => {
                 console.log("Success:", json);
-                // 추가적인 처리 (예: 성공 메시지 표시 또는 리다이렉트)
+                // 중복 여부에 따라 메시지 표시 또는 페이지 리디렉션 처리
+                if (json.message === "email이 중복입니다") {
+                    alert("email이 이미 사용 중입니다.");
+                } else {
+                    // 리디렉션 처리
+                    alert("회원가입성공");
+                    window.location.href = "/LoginPage"; // 또는 리액트 라우터를 사용하여 페이지 전환
+                }
             })
             .catch((error) => {
                 console.error("Error:", error);
+                alert("email이 이미 사용 중입니다.")
             });
     };
 
@@ -83,15 +90,15 @@ const RegisterPage = () => {
 
     return (
         <>
-            <form id="register-form" name="register" style={styles.form} onSubmit={handleSubmit}>
+            <div id="register-form" name="register" style={styles.form}>
                 <h1 className="register-title" style={styles.title}>회원가입</h1>
                 <div id="username-field">
-                    <label htmlFor="username" style={styles.label}>아이디</label>
+                    <label htmlFor="username" style={styles.label}>이름</label>
                     <input
                         id="username"
                         name="username"
                         type="text"
-                        placeholder="아이디"
+                        placeholder="이름"
                         style={styles.input}
                         value={formData.username}
                         onChange={handleChange}
@@ -124,11 +131,11 @@ const RegisterPage = () => {
                     />
                     <div className="error-message"></div>
                 </div>
-                <button type="submit" style={styles.button}>가입하기</button>
+                <button type="button" style={styles.button} onClick={handleRegister}>가입하기</button>
                 <div className="register-message" style={styles.registerMessage}>
                     이미 회원이신가요? <a href="/LoginPage">로그인</a>
                 </div>
-            </form>
+            </div>
         </>
     );
 }

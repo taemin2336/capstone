@@ -1,6 +1,46 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const LoginPage = () => {
+    const [formData, setFormData] = useState({
+        email: '',
+        password: '',
+    });
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({
+            ...formData,
+            [name]: value,
+        });
+    };
+
+    const handleLogin = (e) => {
+        e.preventDefault();
+        fetch("http://localhost:5000/login", { // 서버의 주소로 변경해야 함
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formData),
+        })
+            .then((res) => {
+                if (!res.ok) {
+                    throw new Error("Network response was not ok");
+                }
+                return res.json();
+            })
+            .then((json) => {
+                console.log("Success:", json);
+                alert("로그인 성공");
+                window.location.href = "/Main"; // 또는 리액트 라우터를 사용하여 페이지 전환
+                // 로그인 성공 시 추가 작업을 수행할 수 있습니다
+            })
+            .catch((error) => {
+                console.error("Error:", error);
+                alert("로그인 실패");
+            });
+    };
+
     const styles = {
         form: {
             margin: '140px auto',
@@ -45,16 +85,32 @@ const LoginPage = () => {
 
     return (
         <>
-            <form id="login-form" name="login" style={styles.form}>
+            <form id="login-form" name="login" style={styles.form} onSubmit={handleLogin}>
                 <h1 className="login-title" style={styles.title}>로그인</h1>
                 <div id="email-field">
-                    <label htmlFor="id" style={styles.label}>아이디</label>
-                    <input id="id" name="id" type="email" placeholder="아이디" style={styles.input} />
+                    <label htmlFor="email" style={styles.label}>아이디</label>
+                    <input
+                        id="email"
+                        name="email"
+                        type="email"
+                        placeholder="email"
+                        style={styles.input}
+                        value={formData.email}
+                        onChange={handleChange}
+                    />
                     <div className="error-message"></div>
                 </div>
                 <div id="password-field">
                     <label htmlFor="password" style={styles.label}>비밀번호</label>
-                    <input id="password" name="password" type="password" placeholder="비밀번호" style={styles.input} />
+                    <input
+                        id="password"
+                        name="password"
+                        type="password"
+                        placeholder="비밀번호"
+                        style={styles.input}
+                        value={formData.password}
+                        onChange={handleChange}
+                    />
                     <div className="error-message"></div>
                 </div>
                 <button type="submit" style={styles.button}>로그인</button>

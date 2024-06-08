@@ -295,7 +295,7 @@ const Main = () => {
                         <div style={styles.cursorOn} className="cursorOn" onClick="location.href='Main_Post.js'">
                             게시글
                         </div>
-                        <div style={styles.cursorOn} className="cursorOn" onClick={LoginPage}>
+                        <div style={styles.cursorOn} className="cursorOn" onClick="location.href='Main_Post.js'">
                             쇼트비디오
                         </div>
                     </div>

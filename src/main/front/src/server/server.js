@@ -22,19 +22,20 @@ app.get("/", (req, res) => {
     res.send("Hello World!");
 });
 
+// 회원가입
 app.post("/register", (req, res) => {
     const { username, email, password } = req.body;
 
-    // Check if username already exists
-    connection.query("SELECT * FROM users WHERE username = ?", [username], (err, results) => {
+    // Check if email already exists
+    connection.query("SELECT * FROM users WHERE email = ?", [email], (err, results) => {
         if (err) {
             console.error("DB 조회 실패:", err);
             return res.status(500).json({ message: "DB 조회 실패" });
         }
 
         if (results.length > 0) {
-            return res.status(400).json({ message: "아이디가 중복입니다" });
-        }
+            return res.status(400).json({ message: "email이 중복입니다" });
+    }
 
         // If username is unique, proceed to insert new user
         connection.query("INSERT INTO users (username, email, password) VALUES (?, ?, ?)", [username, email, password], (err, results) => {
@@ -47,6 +48,27 @@ app.post("/register", (req, res) => {
         });
     });
 });
+
+// 로그인
+app.post("/login", (req, res) => {
+    const { email, password } = req.body;
+
+    // Check if email and password match a user in the database
+    connection.query("SELECT * FROM users WHERE email = ? AND password = ?", [email, password], (err, results) => {
+        if (err) {
+            console.error("DB 조회 실패:", err);
+            return res.status(500).json({ message: "DB 조회 실패" });
+        }
+
+        if (results.length === 0) {
+            return res.status(400).json({ message: "이메일 또는 비밀번호가 일치하지 않습니다." });
+        }else{
+            console.log("로그인 성공");
+            res.status(200).json({ message: "로그인 성공" });
+        }
+    });
+});
+
 
 app.listen(port, () => {
     console.log(`서버가 http://localhost:${port} 에서 실행 중입니다.`);
