@@ -111,23 +111,34 @@ const ProfileEdit = () => {
     const [bio, setBio] = useState('');
 
     useEffect(() => {
-        // 로그인 정보에서 이메일을 가져옴
-        const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
-        if (loggedInUser && loggedInUser.email) {
-            // 이메일 정보를 기반으로 프로필 정보를 가져옴
-            axios.post('http://localhost:5000/getProfile', { email: loggedInUser.email })
-                .then((response) => {
-                    setNickname(response.data.nickname);
-                    setBio(response.data.bio);
-                    // 프로필 이미지를 가져와 설정
-                    // 예시: setProfileImage(response.data.profileImage);
-                })
-                .catch((error) => {
-                    console.error('프로필 정보를 가져오는 데 실패했습니다:', error);
-                });
-        }
+        const fetchData = async () => {
+            try {
+                // 로컬 스토리지에서 이메일 정보 가져오기
+                const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+                console.log('loggedInUser:', loggedInUser);
+                if (!loggedInUser || !loggedInUser.email) {
+                    // 로그인되어 있지 않으면 로그인 페이지로 이동
+                    window.location.href = "/LoginPage"; // 로그인 페이지 경로에 따라 수정
+                    return;
+                }
+
+                // 로그인한 이메일을 사용하여 프로필 정보 가져오기
+                const response = await axios.post('/getProfile', { email: loggedInUser.email });
+                console.log('Profile Data Response:', response.data);
+                setProfileData(response.data); // 프로필 데이터 설정
+            } catch (error) {
+                console.error('프로필 정보를 가져오는 데 실패했습니다:', error);
+            }
+        };
+
+        fetchData();
     }, []);
 
+    const [profileData, setProfileData] = useState({
+        nickname: '',
+        bio: '',
+        profile_image: ''
+    });
 
     const handleImageChange = (e) => {
         if (e.target.files && e.target.files[0]) {
