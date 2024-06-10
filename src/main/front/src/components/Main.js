@@ -198,6 +198,7 @@ const Main = () => {
         productItemImg: {
             width: '200px',
             height: '200px',
+            cursor: 'pointer',
         },
         productItemP: {
             margin: '5px 0',
@@ -228,74 +229,88 @@ const Main = () => {
                     <label>
                         <input style={styles.searchBoxInput} type="text" placeholder="찾고 싶은 상품을 검색하세요"/>
                     </label>
-                    <img style={styles.searchBoxImg} src="../image/search.png" alt="검색 아이콘"/>
+                    <img style={styles.searchBoxImg} src="/image/search.png" alt="검색 아이콘"/>
                 </div>
-                <div style={styles.profile} className="profile" onClick="location.href='MyProfile.html'">
-                    <img style={styles.profileImg} src="../image/profile.jpg" alt="프로필 아이콘"/>
-                    <p style={styles.profileP}>권순광</p>
+                <div style={styles.profile} className="profile" onClick={() => window.location.href = 'MyProfile'}>
+                    <img style={styles.profileImg} src="/image/profile.jpg" alt="프로필 아이콘"/>
+                    <p style={styles.profil}>권순광</p>
                 </div>
             </div>
             <div style={styles.center} className="center">
                 <div style={styles.leftSidebar} className="left-sidebar">
                     <h2 style={styles.leftSidebarH2} className="category">
                         식품
-                        <img style={styles.leftSidebarH2Img} src="../image/plus.png" alt="플러스 아이콘"/>
+                        <img style={styles.leftSidebarH2Img} src="/image/plus.png" alt="플러스 아이콘"/>
                     </h2>
                     <h2 style={styles.leftSidebarH2} className="category">
                         패션
-                        <img style={styles.leftSidebarH2Img} src="../image/plus.png" alt="플러스 아이콘"/>
+                        <img style={styles.leftSidebarH2Img} src="/image/plus.png" alt="플러스 아이콘"/>
                     </h2>
                     <h2 style={styles.leftSidebarH2} className="category">
                         뷰티
-                        <img style={styles.leftSidebarH2Img} src="../image/plus.png" alt="플러스 아이콘"/>
+                        <img style={styles.leftSidebarH2Img} src="/image/plus.png" alt="플러스 아이콘"/>
                     </h2>
                     <h2 style={styles.leftSidebarH2} className="category">
                         스포츠
-                        <img style={styles.leftSidebarH2Img} src="../image/plus.png" alt="플러스 아이콘"/>
+                        <img style={styles.leftSidebarH2Img} src="/image/plus.png" alt="플러스 아이콘"/>
                     </h2>
                     <h2 style={styles.leftSidebarH2} className="category">
                         가구/인테리어
-                        <img style={styles.leftSidebarH2Img} src="../image/plus.png" alt="플러스 아이콘"/>
+                        <img style={styles.leftSidebarH2Img} src="/image/plus.png" alt="플러스 아이콘"/>
                     </h2>
                     <h2 style={styles.leftSidebarH2} className="category">
                         생활
-                        <img style={styles.leftSidebarH2Img} src="../image/plus.png" alt="플러스 아이콘"/>
+                        <img style={styles.leftSidebarH2Img} src="/image/plus.png" alt="플러스 아이콘"/>
                     </h2>
                     <h2 style={styles.leftSidebarH2} className="category">
                         건강
-                        <img style={styles.leftSidebarH2Img} src="../image/plus.png" alt="플러스 아이콘"/>
+                        <img style={styles.leftSidebarH2Img} src="/image/plus.png" alt="플러스 아이콘"/>
                     </h2>
                     <h2 style={styles.leftSidebarH2} className="category">
                         도서
-                        <img style={styles.leftSidebarH2Img} src="../image/plus.png" alt="플러스 아이콘"/>
+                        <img style={styles.leftSidebarH2Img} src="/image/plus.png" alt="플러스 아이콘"/>
                     </h2>
                     <div style={styles.footer} className="footer">
                         <ul style={styles.footerUl}>
                             <li style={styles.footerUlLi}>
-                                <img style={styles.footerUlLiImg} src="../image/setting.png" alt="쇼츠 아이콘"/> 쇼츠
+                                <img style={styles.footerUlLiImg} src="/image/setting.png" alt="쇼츠 아이콘"/> 쇼츠
                             </li>
                             <li style={styles.footerUlLi}>
-                                <img style={styles.footerUlLiImg} src="../image/setting.png" alt="북마크 아이콘"/> 북마크
+                                <img style={styles.footerUlLiImg} src="/image/setting.png" alt="북마크 아이콘"/> 북마크
                             </li>
                             <li style={styles.footerUlLi}>
-                                <img style={styles.footerUlLiImg} src="../image/setting.png" alt="프로필 수정 아이콘"/> 프로필 수정
+                                <img style={styles.footerUlLiImg} src="/image/setting.png" alt="프로필 수정 아이콘"/> 프로필 수정
                             </li>
                             <li style={styles.footerUlLi}>
-                                <img style={styles.footerUlLiImg} src="../image/setting.png" alt="기념일 수정 아이콘"/> 기념일 수정
+                                <img style={styles.footerUlLiImg} src="/image/setting.png" alt="기념일 수정 아이콘"/> 기념일 수정
                             </li>
                             <li style={styles.footerUlLi}>
-                                <img style={styles.footerUlLiImg} src="../image/setting.png" alt="설정 아이콘"/> 설정
+                                <img style={styles.footerUlLiImg} src="/image/setting.png" alt="설정 아이콘"/> 설정
                             </li>
                         </ul>
                     </div>
                 </div>
                 <div style={styles.middle} className="middle">
                     <div style={styles.tabMenu} className="tab-menu">
-                        <div style={styles.tabMenuDivSelect} className="select">상품</div>
-                        <div style={styles.cursorOn} className="cursorOn" onClick="location.href='Main_Post.js'">
+                        <div
+                            style={styles.cursorOn}
+                            className="cursorOn"
+                            onClick={() => window.location.href = 'Main'}
+                        >
+                            상품
+                        </div>
+                        <div
+                            style={styles.cursorOn}
+                            className="cursorOn"
+                            onClick={() => window.location.href = 'Main_Post'}
+                        >
                             게시글
                         </div>
-                        <div style={styles.cursorOn} className="cursorOn" onClick="location.href='Main_Post.js'">
+                        <div
+                            style={styles.cursorOn}
+                            className="cursorOn"
+                            onClick={() => window.location.href = 'Main_Video'}
+                        >
                             쇼트비디오
                         </div>
                     </div>
@@ -305,58 +320,59 @@ const Main = () => {
                         <div style={styles.arrow} className="arrow">&gt;</div>
                     </div>
                     <div style={styles.product} className="product">
-                        <div style={styles.productItem}
-                            className="product-item  cursorOn"
-                            onClick="location.href='ProductPage.html'"
+                        <div
+                            style={styles.productItem}
+                            className="product-item cursorOn"
+                            onClick={() => window.location.href = 'ProductPage'}
                         >
-                            <img style={styles.productItemImg} src="../image/product-soap.png" alt="상품 이미지"/>
+                            <img style={styles.productItemImg} src="/image/product-soap.png" alt="상품 이미지"/>
                             <p style={styles.productItemP}>상품이름</p>
                             <p className="price">10,000원</p>
                             <div style={styles.productItemRating} className="rating">
-                                <img style={styles.productItemRatingImg} src="../image/star.png" alt="별점 아이콘"/>
-                                <img style={styles.productItemRatingImg} src="../image/star.png" alt="별점 아이콘"/>
-                                <img style={styles.productItemRatingImg} src="../image/star.png" alt="별점 아이콘"/>
-                                <img style={styles.productItemRatingImg} src="../image/star.png" alt="별점 아이콘"/>
-                                <img style={styles.productItemRatingImg} src="../image/star.png" alt="별점 아이콘"/>
+                                <img style={styles.productItemRatingImg} src="/image/star.png" alt="별점 아이콘"/>
+                                <img style={styles.productItemRatingImg} src="/image/star.png" alt="별점 아이콘"/>
+                                <img style={styles.productItemRatingImg} src="/image/star.png" alt="별점 아이콘"/>
+                                <img style={styles.productItemRatingImg} src="/image/star.png" alt="별점 아이콘"/>
+                                <img style={styles.productItemRatingImg} src="/image/star.png" alt="별점 아이콘"/>
                                 <span style={styles.productItemRatingSpan}>(99)</span>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div style={styles.rightSidebar} className="right-sidebar">
-                    <div style={styles.section} className="section">
+                <div style={styles.section} className="section">
                         <h3 style={styles.sectionH3}>추천 카테고리</h3>
                         <ul style={styles.sectionUl}>
                             <li style={styles.sectionUlLi}>
-                                <img style={styles.sectionUlLiImg} src="../image/setting.png" alt="카테고리 아이콘"/>
+                                <img style={styles.sectionUlLiImg} src="/image/setting.png" alt="카테고리 아이콘"/>
                                 카테고리1
                             </li>
                             <li style={styles.sectionUlLi}>
-                                <img style={styles.sectionUlLiImg} src="../image/setting.png" alt="카테고리 아이콘"/>
+                                <img style={styles.sectionUlLiImg} src="/image/setting.png" alt="카테고리 아이콘"/>
                                 카테고리2
                             </li>
                             <li style={styles.sectionUlLi}>
-                                <img style={styles.sectionUlLiImg} src="../image/setting.png" alt="카테고리 아이콘"/>
+                                <img style={styles.sectionUlLiImg} src="/image/setting.png" alt="카테고리 아이콘"/>
                                 카테고리3
                             </li>
                             <li style={styles.sectionUlLi}>
-                                <img style={styles.sectionUlLiImg} src="../image/setting.png" alt="카테고리 아이콘"/>
+                                <img style={styles.sectionUlLiImg} src="/image/setting.png" alt="카테고리 아이콘"/>
                                 카테고리4
                             </li>
                             <li style={styles.sectionUlLi}>
-                                <img style={styles.sectionUlLiImg} src="../image/setting.png" alt="카테고리 아이콘"/>
+                                <img style={styles.sectionUlLiImg} src="/image/setting.png" alt="카테고리 아이콘"/>
                                 카테고리5
                             </li>
                             <li style={styles.sectionUlLi}>
-                                <img style={styles.sectionUlLiImg} src="../image/setting.png" alt="카테고리 아이콘"/>
+                                <img style={styles.sectionUlLiImg} src="/image/setting.png" alt="카테고리 아이콘"/>
                                 카테고리6
                             </li>
                             <li style={styles.sectionUlLi}>
-                                <img style={styles.sectionUlLiImg} src="../image/setting.png" alt="카테고리 아이콘"/>
+                                <img style={styles.sectionUlLiImg} src="/image/setting.png" alt="카테고리 아이콘"/>
                                 카테고리7
                             </li>
                             <li style={styles.sectionUlLi}>
-                                <img style={styles.sectionUlLiImg} src="../image/setting.png" alt="카테고리 아이콘"/>
+                                <img style={styles.sectionUlLiImg} src="/image/setting.png" alt="카테고리 아이콘"/>
                                 카테고리8
                             </li>
                         </ul>
@@ -365,35 +381,35 @@ const Main = () => {
                         <h3 style={styles.sectionH3}>추천 작가</h3>
                         <ul style={styles.sectionUl}>
                             <li style={styles.sectionUlLi}>
-                                <img style={styles.sectionUlLiImg} src="../image/setting.png" alt="작가 아이콘"/>
+                                <img style={styles.sectionUlLiImg} src="/image/setting.png" alt="작가 아이콘"/>
                                 작가1
                             </li>
                             <li style={styles.sectionUlLi}>
-                                <img style={styles.sectionUlLiImg} src="../image/setting.png" alt="작가 아이콘"/>
+                                <img style={styles.sectionUlLiImg} src="/image/setting.png" alt="작가 아이콘"/>
                                 작가2
                             </li>
                             <li style={styles.sectionUlLi}>
-                                <img style={styles.sectionUlLiImg} src="../image/setting.png" alt="작가 아이콘"/>
+                                <img style={styles.sectionUlLiImg} src="/image/setting.png" alt="작가 아이콘"/>
                                 작가3
                             </li>
                             <li style={styles.sectionUlLi}>
-                                <img style={styles.sectionUlLiImg} src="../image/setting.png" alt="작가 아이콘"/>
+                                <img style={styles.sectionUlLiImg} src="/image/setting.png" alt="작가 아이콘"/>
                                 작가4
                             </li>
                             <li style={styles.sectionUlLi}>
-                                <img style={styles.sectionUlLiImg} src="../image/setting.png" alt="작가 아이콘"/>
+                                <img style={styles.sectionUlLiImg} src="/image/setting.png" alt="작가 아이콘"/>
                                 작가5
                             </li>
                             <li style={styles.sectionUlLi}>
-                                <img style={styles.sectionUlLiImg} src="../image/setting.png" alt="작가 아이콘"/>
+                                <img style={styles.sectionUlLiImg} src="/image/setting.png" alt="작가 아이콘"/>
                                 작가6
                             </li>
                             <li style={styles.sectionUlLi}>
-                                <img style={styles.sectionUlLiImg} src="../image/setting.png" alt="작가 아이콘"/>
+                                <img style={styles.sectionUlLiImg} src="/image/setting.png" alt="작가 아이콘"/>
                                 작가7
                             </li>
                             <li style={styles.sectionUlLi}>
-                                <img style={styles.sectionUlLiImg} src="../image/setting.png" alt="작가 아이콘"/>
+                                <img style={styles.sectionUlLiImg} src="/image/setting.png" alt="작가 아이콘"/>
                                 작가8
                             </li>
                         </ul>

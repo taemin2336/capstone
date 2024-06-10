@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import axios from 'axios';
 import LoginPage from "./LoginPage";
 
-const Main_Post = () => {
+const Main_Video = () => {
     const selectAll=async()=>{
         alert("selectAll!")
         const result=await axios.get('/image')
@@ -389,65 +389,7 @@ const Main_Post = () => {
                         </div>
                     </div>
 
-                    <div style={styles.postSection} className="postsection">
-                        <div style={styles.postHeader} className="postheader">
-                        <div style={styles.userInfo} className="userinfo">
-                                <img style={styles.userInfoImg}
-                                    alt="프로필 이미지"
-                                    src="/image/profile.jpg"
-                                />
-                                <div>
-                                    <p style={styles.username} className="username">
-                                        권순광
-                                    </p>
-                                    <p style={styles.view} className="view">
-                                        조회수 123K
-                                    </p>
-                                </div>
-                            </div>
-                            <div style={styles.followBtn} className="followbtn">
-                                팔로우
-                            </div>
-                        </div>
-                        <img style={styles.postImage}
-                            alt="게시글 이미지"
-                            className="postimage"
-                            src="/image/product-soap.png"
-                        />
-                        <div style={styles.postActions} className="postactions">
-                            <img style={styles.postActionsImg}
-                                alt="좋아요 아이콘"
-                                src="/image/like.png"
-                            />
-                            <img style={styles.postActionsImg}
-                                alt="북마크 아이콘"
-                                src="/image/dibs.png"
-                            />
-                            <img style={styles.postActionsImg}
-                                alt="공유 아이콘"
-                                src="/image/share.png"
-                            />
-                        </div>
-                        <div style={styles.postContent} className="postcontent">
-                            친환경적이어서 피부에 안전한 비누 많이들 구매하세요~~~
-                            <br/>
-                            2개 구매시 할인 이벤트 중입니다!!
-                        </div>
-                        <div style={styles.commentSection} className="commentsection">
-                            <div style={styles.comment} className="comment">
-                                <img style={styles.commentImg}
-                                    alt="댓글 작성자 이미지"
-                                    src="/image/soap-explanation.png"
-                                />
-                                <p>
-                                    <strong>
-                                        김채영:
-                                    </strong>
-                                    {' '}3번째 재구매 중입니다! 너무 좋아요~!
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+                    // 쇼트비디오 코드 추가
 
                 </div>
                 <div style={styles.rightSidebar} className="right-sidebar">
@@ -531,4 +473,4 @@ const Main_Post = () => {
     );
 }
 
-export default Main_Post;
+export default Main_Video;
