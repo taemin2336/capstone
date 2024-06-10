@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 
 const MyProfile = () => {
@@ -8,6 +8,35 @@ const MyProfile = () => {
         console.log(result)
     }
 
+    const [profileData, setProfileData] = useState({
+        nickname: '',
+        bio: '',
+        profile_image: ''
+    });
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                // 로컬 스토리지에서 이메일 정보 가져오기
+                const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+                console.log('loggedInUser:', loggedInUser);
+                if (!loggedInUser || !loggedInUser.email) {
+                    // 로그인되어 있지 않으면 로그인 페이지로 이동
+                    window.location.href = "/LoginPage"; // 로그인 페이지 경로에 따라 수정
+                    return;
+                }
+
+                // 로그인한 이메일을 사용하여 프로필 정보 가져오기
+                const response = await axios.post('/getProfile', { email: loggedInUser.email });
+                console.log('Profile Data Response:', response.data);
+                setProfileData(response.data); // 프로필 데이터 설정
+            } catch (error) {
+                console.error('프로필 정보를 가져오는 데 실패했습니다:', error);
+            }
+        };
+
+        fetchData();
+    }, []);
 
     const styles = {
         header: {
@@ -191,23 +220,23 @@ const MyProfile = () => {
                     </p>
                     <div style={styles.searchBox} className="search-box">
                         <label>
-                        <input style={styles.searchBoxInput}
-                                placeholder="찾고 싶은 상품을 검색하세요"
-                                type="text"
+                            <input style={styles.searchBoxInput}
+                                   placeholder="찾고 싶은 상품을 검색하세요"
+                                   type="text"
                             />
                         </label>
                         <img style={styles.searchBoxImg}
-                            alt="검색 아이콘"
-                            src="/image/search.png"
+                             alt="검색 아이콘"
+                             src="/image/search.png"
                         />
                     </div>
                     <div style={styles.profile}
-                        className="profile"
-                        onClick="location.href='MyProfile.html'"
+                         className="profile"
+                         onClick="location.href='MyProfile.html'"
                     >
                         <img style={styles.profileImg}
-                            alt="프로필 아이콘"
-                            src="/image/profile.jpg"
+                             alt="프로필 아이콘"
+                             src="/image/profile.jpg"
                         />
                         <p style={styles.profileP}>
                             권순광
@@ -218,24 +247,22 @@ const MyProfile = () => {
                     <div style={styles.profileHeader} className="profile-header">
                         <div style={styles.profileInfo} className="profile-info">
                             <img style={styles.profileImg}
-                                alt="프로필 이미지"
-                                src="/image/profile.jpg"
+                                 alt="프로필 이미지"
+                                 src={profileData.profileImage}
                             />
                             <div style={styles.profileInfoDiv}>
                                 <p style={styles.username} className="username">
-                                    독고순광
+                                    {profileData.nickname}
                                 </p>
                                 <p style={styles.bio} className="bio">
-                                    비누 공방을 운영하고 있습니다.
-                                    <br/>
-                                    {`전화로 문의하기 > 031-1234-4567`}
+                                    {profileData.bio}
                                 </p>
                             </div>
                         </div>
                         <div style={styles.profileStats} className="profile-stats">
                             <div style={styles.profileEdit} className="profile-edit"
                                  onClick={() => window.location.href = 'ProfileEdit'}
-                                     >
+                            >
                                 프로필 수정
                             </div>
                             <div style={styles.profileFollow} className="profile-follow">
@@ -268,8 +295,8 @@ const MyProfile = () => {
                     </div>
                     <div className="posts">
                         <div style={styles.post}
-                            className="post"
-                            onClick="location.href='ProductPage.html'"
+                             className="post"
+                             onClick="location.href='ProductPage.html'"
                         >
                             <img
                                 alt="게시글 이미지"
@@ -278,16 +305,16 @@ const MyProfile = () => {
                             />
                             <div style={styles.postActions} className="post-actions">
                                 <img style={styles.postActionsImg}
-                                    alt="좋아요 아이콘"
-                                    src="image/like.png"
+                                     alt="좋아요 아이콘"
+                                     src="image/like.png"
                                 />
                                 <img style={styles.postActionsImg}
-                                    alt="북마크 아이콘"
-                                    src="image/dibs.png"
+                                     alt="북마크 아이콘"
+                                     src="image/dibs.png"
                                 />
                                 <img style={styles.postActionsImg}
-                                    alt="공유 아이콘"
-                                    src="image/share.png"
+                                     alt="공유 아이콘"
+                                     src="image/share.png"
                                 />
                             </div>
                             <p>

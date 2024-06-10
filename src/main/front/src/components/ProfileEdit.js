@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
+import axios from 'axios';
 
 const styles = {
     container: {
@@ -109,25 +110,62 @@ const ProfileEdit = () => {
     const [profileImage, setProfileImage] = useState(null);
     const [bio, setBio] = useState('');
 
+    useEffect(() => {
+        // 로그인 정보에서 이메일을 가져옴
+        const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+        if (loggedInUser && loggedInUser.email) {
+            // 이메일 정보를 기반으로 프로필 정보를 가져옴
+            axios.post('http://localhost:5000/getProfile', { email: loggedInUser.email })
+                .then((response) => {
+                    setNickname(response.data.nickname);
+                    setBio(response.data.bio);
+                    // 프로필 이미지를 가져와 설정
+                    // 예시: setProfileImage(response.data.profileImage);
+                })
+                .catch((error) => {
+                    console.error('프로필 정보를 가져오는 데 실패했습니다:', error);
+                });
+        }
+    }, []);
+
+
     const handleImageChange = (e) => {
         if (e.target.files && e.target.files[0]) {
-            setProfileImage(URL.createObjectURL(e.target.files[0]));
+            setProfileImage(e.target.files[0]);
         }
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // 여기에 폼 제출 로직을 추가하세요
-        console.log({ nickname, bio });
-        alert('프로필이 업데이트되었습니다!');
-        window.location.href = "/MyProfile";
+        const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+        if (loggedInUser && loggedInUser.email) {
+            const formData = new FormData();
+            formData.append('nickname', nickname);
+            formData.append('bio', bio);
+            if (profileImage) {
+                formData.append('profileImage', profileImage);
+            }
+
+            try {
+                const response = await axios.post('http://localhost:5000/updateProfile', formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                    },
+                });
+                alert('프로필이 업데이트되었습니다!');
+                window.location.href = "/MyProfile";
+            } catch (error) {
+                console.error('프로필 업데이트에 실패했습니다.', error);
+                alert('프로필 업데이트에 실패했습니다.');
+            }
+        }
     };
 
     return (
         <>
             <div>
                 <div style={styles.header} className="header">
-                    <p style={styles.mainLogo}
+                    <p style={styles.mainlogo}
                        className="main-logo"
                        onClick={() => window.location.href = 'Main'}
                     >
@@ -158,14 +196,15 @@ const ProfileEdit = () => {
                         </p>
                     </div>
                 </div>
-
             </div>
             <div style={styles.container}>
                 <h2>프로필 수정</h2>
                 <form onSubmit={handleSubmit}>
                     <div style={styles.formGroup}>
                         <label style={styles.label}>프로필 사진</label>
-                        {profileImage && <img src={profileImage} alt="프로필 이미지" style={styles.profileImage}/>}
+                        {profileImage && (
+                            <img src={URL.createObjectURL(profileImage)} alt="프로필 이미지" style={styles.profileImage}/>
+                        )}
                         <input type="file" accept="image/*" onChange={handleImageChange}/>
                     </div>
                     <div style={styles.formGroup}>

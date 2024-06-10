@@ -32,6 +32,8 @@ const LoginPage = () => {
             .then((json) => {
                 console.log("Success:", json);
                 alert("로그인 성공");
+                // 로그인에 성공하면 이메일 정보를 로컬 스토리지에 저장
+                localStorage.setItem('loggedInUser', JSON.stringify({ email: formData.email }));
                 window.location.href = "/Main"; // 또는 리액트 라우터를 사용하여 페이지 전환
                 // 로그인 성공 시 추가 작업을 수행할 수 있습니다
             })
